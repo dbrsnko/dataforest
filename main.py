@@ -124,9 +124,12 @@ class PostgresManager(DatabaseManager):
         if self.connection:
             self.connection.close()
 
+class Scraper(ABC):
+    @abstractmethod
+    def run(self, num_workers):
+        pass
 
-#TODO think of how to add an interface here
-class VendrScraper:
+class VendrScraper(Scraper):
     """Main scraper class for Vendr.com products."""
     
     BASE_URL = "https://www.vendr.com"
